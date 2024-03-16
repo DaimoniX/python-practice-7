@@ -19,13 +19,16 @@ def read_file_builtin(file_path):
         file_path (str): The path to the file to read.
 
     Returns:
-        list[str] or None: The contents of the file as a list of strings or None if the file does not exist.
+        list[str]: The contents of the file as a list of strings.
+
+    Raises:
+        RuntimeError: If the file does not exist.
     """
     try:
         with open(file_path, "r") as file:
             return file.readlines()
     except FileNotFoundError:
-        return None
+        raise RuntimeError("File not found")
 
 
 def read_file_pandas(file_path):
@@ -36,9 +39,12 @@ def read_file_pandas(file_path):
         file_path (str): The path to the file to read.
 
     Returns:
-        pd.DataFrame or None: The contents of the file as a DataFrame or None if the file does not exist.
+        pd.DataFrame: The contents of the file as a DataFrame.
+
+    Raises:
+        RuntimeError: If the file does not exist or is empty.
     """
     try:
         return pd.read_csv(file_path)
-    except FileNotFoundError:
-        return None
+    except (FileNotFoundError, pd.errors.EmptyDataError):
+        raise RuntimeError("File not found or empty")
