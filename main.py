@@ -14,7 +14,7 @@ def main():
     if file_lines is None:
         print_console("The file does not exist.")
     else:
-        print_console('\n'.join(file_lines))
+        print_console("\n".join(file_lines))
 
     # reading data from data/pandas_input.csv using pandas and writing it to the console and data/pandas_output.txt
     pandas_file = read_file_pandas("data/pandas_input.csv")

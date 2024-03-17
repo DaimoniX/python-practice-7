@@ -24,16 +24,16 @@ def test_read_file_builtin_non_existing():
 
 
 def test_read_file_pandas_normal():
-    result = read_file_pandas('./resources/pandas.csv')
+    result = read_file_pandas("./resources/pandas.csv")
     assert isinstance(result, pd.DataFrame), "Should return a DataFrame for existing files"
     assert result.shape == (2, 3), "Should return a DataFrame with the correct shape for existing files"
 
 
 def test_read_file_pandas_empty():
     with pytest.raises(RuntimeError, match="File not found or empty"):
-        read_file_pandas('./resources/empty.txt')
+        read_file_pandas("./resources/empty.txt")
 
 
 def test_read_file_pandas_non_existing():
     with pytest.raises(RuntimeError, match="File not found or empty"):
-        read_file_pandas('./resources/non_existing_file.txt')
+        read_file_pandas("./resources/non_existing_file.txt")
